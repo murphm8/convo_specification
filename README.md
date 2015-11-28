@@ -9,18 +9,22 @@ Some designs could cause pain and complex schema updates/refactoring if new feat
 
 If we wanted to reduce the number of joins required when querying a single message we could also store the subject string on each row of Messages. We would still want the Threads table to make it easy to query an entire reply thread. If the Threads table did not exist we would need to do a recursive query up the parent_message_id graph of all the messages in the reply thread.
 
-There are foreign key constraints on recipient_id (Receipts), sender_id (Messages), message_id (Receipts), and thread_id (Messages).
+There are foreign key constraints on recipient_id (Receipts), sender_id (Messages), message_id (Receipts), thread_id (Messages), and parent_message_id (Messages).
 
 
 - The constraints on recipient_id and sender_id ensure that a User cannot be deleted if he/she is the sender or receiver of any messages.
 - The constraint on message_id ensures that as long as a receipt referencing a message exists, that message cannot be deleted.
 - The constraint on thread_id ensures that while any messages that belong to that thread exist, the referenced row in Threads cannot be deleted.
+- The constraint on parent_message_id ensures that a message that was replied to cannot be deleted unless all of its replies are deleted first.
+
 
 
 
 ![Message Database Schema](/schema/schema.png?raw=true)
 
 ## API
+
+[Messaging API Doc](/api/api.md)
 
 ## References
 
