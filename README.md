@@ -9,6 +9,9 @@ multiple times if we wanted to allow for multiple recipients in the future. This
 more complex for the simple case, so if it was really guaranteed we would never want advanced features,
 then this schema could be made simpler.
 
+
+![Message Database Schema](/schema/schema.png?raw=true)
+
 ## API
 
 ## References
