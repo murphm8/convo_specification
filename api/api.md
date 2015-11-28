@@ -10,9 +10,13 @@ List the authenticated user's messages
 
 List all the authenticated user's unread messages
 
-  GET /messages/unread
+    GET /messages/unread
 
-### Parameters
+List all the authenticated user's read messages
+
+    GET /messages/read
+
+#### Parameters
 
 Name     | Type      | Description
 ---------|-----------|------------
@@ -20,13 +24,13 @@ Name     | Type      | Description
 `count`  | `integer` | maximum number of messages to return in the response (max: 100)
 
 
-+ Response 200 (application/json)
+#### Response 200 OK (application/json)
 
-    + Headers
+    Headers:
 
             Link : <http://api.messagecenter.ex/messages?offset=10>; rel="next", <http:///api.messagecenter.ex/messages?offset=110>; rel="last"
 
-    + Body
+    Body:
 
             [
                 {
@@ -45,14 +49,33 @@ Name     | Type      | Description
                     "body": "I'm so hungry I could eat a horse."
                     "read": false
                 },
+                {
+                    "id": 6,
+                    "sender_id": 92,
+                    "recipient_id": 22,
+                    "parent_id": 5
+                    "subject": "What's for dinner?",
+                    "body": "Leave my horse alone! Go make a sandwich."
+                }
             ]
 
 
-### Create a New Message [POST]
+## Create a New Message
 
-This creates a new message with the logged in user as the sender.
+  This creates a new message with the authenticated user as the sender.
 
-+ Request (application/json)
+    POST /gists
+
+#### Input
+
+Name           | Type      | Description
+---------------|-----------|------------
+`recipient_id` | `integer` | **Required** the id of the user who should recieve this message
+`subject`      | `string`  | **Required** the subject of the message (max: 140 characters)
+`body`         | `string`  | **Required** the contents of the message (max: 64,000 characters)
+
+
+#### Request (application/json)
 
         {
             "recipient_id": 92,
@@ -60,13 +83,13 @@ This creates a new message with the logged in user as the sender.
             "body": "I'm so hungry I could eat a horse."
         }
 
-+ Response 201 (application/json)
+#### Response 201 CREATED (application/json)
 
-    + Headers
+    Headers:
 
             Location: /messages/5
 
-    + Body
+    Body:
 
             {
                 "id": 5,
@@ -76,9 +99,7 @@ This creates a new message with the logged in user as the sender.
                 "body": "I'm so hungry I could eat a horse."
             }
 
-+ Response 422 (application/json)
-
-    + Body
+#### Response 422 UNPROCESSABLE ENTITY (application/json)
 
             {
                 "code" : 1024,
@@ -96,22 +117,14 @@ This creates a new message with the logged in user as the sender.
                 }
               ]
             }
-## Unread messages for the logged in user [/messages/unread]
 
-### Get all unread messages [GET]
+## Get a single message
 
+    GET /messages/:id
 
+#### Response 200 OK (application/json)
 
-## Individual Message [/messages/{message_id}]
-
-### Get the message specified by ID [GET]
-
-+ Parameters
-    + message_id (number) - ID of the message
-
-+ Response 200 (application/json)
-
-    + Body
+    Body:
 
             {
                 "id": 5,
@@ -121,35 +134,50 @@ This creates a new message with the logged in user as the sender.
                 "body": "I'm so hungry I could eat a horse."
             }
 
-### Send message to the Trash [DELETE]
+#### Response 404 NOT FOUND
 
-+ Parameters
-    + message_id (number) - ID of the message
+## Delete a message
 
+    DELETE /messages/:id
 
-+ Response 204
+#### Response 204 NO CONTENT
+
+#### Response 404 NOT FOUND
 
 ## Mark message as read
-    PUT /messages/{message_id}/read
 
-## Mark Message as unread
-    PUT /messages/{message_id}/unread
+    PUT /messages/:id/read
+
+#### Response 200 OK
+
+#### Response 404 NOT FOUND
+
+## Mark message as unread
+
+    PUT /messages/:id/unread
+
+#### Response 200 OK
+
+#### Response 404 NOT FOUND
+
+## Reply to a message
+
+    POST /messages/:id/reply
+
+#### Input
+
+    Name   | Type     | Description
+    -------|----------|------------
+    `body` | `string` | **Required** the contents of the message (max: 64,000 characters)
 
 
-## Reply to Message [/messages/{message_id}/reply]
-
-### Create Reply [POST]
-
-+ Parameters
-    + message_id (number) - ID of the message
-
-+ Request (application/json)
+#### Request (application/json)
 
             {
                 "body": "Leave my horse alone! Go make a sandwich."
             }
 
-+ Response 201 (application/json)
+#### Response 201 (application/json)
 
         {
             "id": 6,
@@ -160,16 +188,24 @@ This creates a new message with the logged in user as the sender.
             "body": "Leave my horse alone! Go make a sandwich."
         }
 
-## Replies Collection [/messages/{message_id}/replies]
+## Get all the messages in the reply thread of this message
 
-### Get all the messages in the reply thread of this message [GET]
+    GET /messages/:id/replies
 
-+ Parameters
+#### Parameters
 
-      + message_id (number) - ID of the message
+Name     | Type      | Description
+---------|-----------|------------
+`offset` | `integer` | the count to start at for this request (should be a multiple of count)
+`count`  | `integer` | maximum number of messages to return in the response (max: 100)
 
-+ Response 200 (application/json)
+#### Response 200 OK (application/json)
 
+    Headers:
+
+        Link : <http://api.messagecenter.ex/messages?offset=10>; rel="next", <http:///api.messagecenter.ex/messages?offset=110>; rel="last"
+
+    Body:
         {
             [
                 {
