@@ -25,11 +25,11 @@ There are foreign key constraints on recipient_id (Receipts), sender_id (Message
 
 [Messaging API Doc](/api/api.md)
 
-## Pagination
+### Pagination
 
 In order to paginate through results that might update in real-time we need to use cursor based pagination. In the case of messages, pagination happens from newest to oldest. In order to avoid duplicate pages I provide the `max_id` query parameter. The server will respond with results older than the given ID (inclusive). The `Link` header provides the links for the client to move forwards and backwards along the query. Since `max_id` is inclusive, the client can subtract one from it to get all the results before that ID and not re-include the minimum id from the last query.
 
-## Caching
+### Caching
 
 We can leverage HTTP features for caching on the client side:
 
@@ -42,7 +42,8 @@ We can leverage HTTP features for caching on the client side:
 I referenced the following when designing my solution:
 
 - [HTTP Protocols](http://www.w3.org/)
-- [Twitter API](https://dev.twitter.com/rest/public/timelines)
+- [Etsy API](https://www.etsy.com/developers/documentation)
+- [Twitter API](https://dev.twitter.com/rest/public)
 - [simple private messaging system](http://www.pixel2life.com/publish/tutorials/608/simple_private_messaging_system/)
 - [Personal Message System](http://www.webestools.com/scripts_tutorials-code-source-15-personal-message-system-in-php-mysql-pm-system-private-message-discussion.html)
 - [Facebook Style Messaging System Database Design](http://www.9lessons.info/2013/05/message-conversation-database-design.html)
