@@ -4,9 +4,11 @@
 
 [Schema SQL](schema/schema.sql)
 
-There are a couple different options for the schema of this small implementation. Some designs could cause pain and complex schema updates/refactoring if new features were requested. For example, having a table with the body, sender, and recipient would make it so the body would have to be copied multiple times if we wanted to allow for multiple recipients in the future. This schema does make the queries more complex for the simple case, there are some simplifications we could make if the feature set was locked.  When I design I try to imagine what features might be asked for in the future, not over designing for the current feature set, but to make sure the schema is capable of being extended with those future features. Some features we might want in the future could be multiple recipients, named mailboxes, or file attachments.
+There are a couple different options for the schema of this small implementation. Some designs could cause pain and complex schema updates/refactoring if new features were requested. For example, having a table with the body, sender, and recipient would make it so the body would have to be copied multiple times if we wanted to allow for multiple recipients in the future.
 
-If we wanted to reduce the number of joins required when querying a single message we could also store the subject string on each row of Messages. We would still want the Threads table to make it easy to query an entire reply thread. If the Threads table did not exist we would need to do a recursive query up the parent_message_id graph of all the messages in the reply thread.
+This schema does make the queries more complex for the simple case, but there are some simplifications we could make if the feature set was locked.  When I design I try to imagine what features might be asked for in the future, and then design with those features in mind. Some features we might want in the future could be multiple recipients, named mailboxes, or file attachments.
+
+If we wanted to reduce the number of joins required when querying a single message we could also store the subject string on each row of Messages. We would still want the Threads table to make it easy to query an entire reply thread. If the Threads table did not exist we would need to do multiple queries up and down the parent_message_id graph of all the messages in the reply thread.
 
 There are foreign key constraints on recipient_id (Receipts), sender_id (Messages), message_id (Receipts), thread_id (Messages), and parent_message_id (Messages).
 
