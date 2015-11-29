@@ -40,6 +40,8 @@ Name     | Type      | Description
                     "subject": "Favorite programming language?",
                     "body": "I really like Fortran.",
                     "read": true
+                    "created_at": 1095379.00
+                    "modified_at": 1095379.00
                 },
                 {
                     "id": 55,
@@ -48,6 +50,8 @@ Name     | Type      | Description
                     "subject": "What's for dinner?",
                     "body": "I'm so hungry I could eat a horse.",
                     "read": true
+                    "created_at": 1095379200.00
+                    "modified_at": 1095379200.00
                 },
                 {
                     "id": 62,
@@ -57,6 +61,8 @@ Name     | Type      | Description
                     "subject": "What's for dinner?",
                     "body": "Leave my horse alone! Go make a sandwich.",
                     "read": false
+                    "created_at": 1095379300.00
+                    "modified_at": 1095379300.00
                 }
             ]
 
@@ -88,7 +94,7 @@ Name           | Type      | Description
 
     Headers:
 
-            Location: /messages/5
+            Location: /messages/55
 
     Body:
 
@@ -98,10 +104,13 @@ Name           | Type      | Description
                 "recipient_id": 92,
                 "subject": "What's for dinner?",
                 "body": "I'm so hungry I could eat a horse.",
-                "read": false
+                "created_at": 1095379200.00
             }
 
 #### Response 422 UNPROCESSABLE ENTITY (application/json)
+
+In the case of a full API doc all error codes would be listed to allow for developers to
+be able to give their own messages in the case of certain error codes.
 
             {
                 "code" : 1024,
@@ -135,6 +144,8 @@ Name           | Type      | Description
                 "subject": "What's for dinner?",
                 "body": "I'm so hungry I could eat a horse.",
                 "read": false
+                "created_at": 1095379200.00
+                "modified_at": 1095379200.00
             }
 
 #### Response 404 NOT FOUND
@@ -176,11 +187,17 @@ Name           | Type      | Description
 
 #### Request (application/json)
 
-            {
-                "body": "Leave my horse alone! Go make a sandwich."
-            }
+        {
+            "body": "Leave my horse alone! Go make a sandwich."
+        }
 
 #### Response 201 (application/json)
+
+    Headers:
+
+        Location: /messages/62
+
+    Body:
 
         {
             "id": 62,
@@ -189,7 +206,7 @@ Name           | Type      | Description
             "parent_id": 5
             "subject": "What's for dinner?",
             "body": "Leave my horse alone! Go make a sandwich.",
-            "read": false
+            "created_at": 1095379300.00
         }
 
 ## Get all the messages in the reply thread of this message
@@ -207,7 +224,7 @@ Name     | Type      | Description
 
     Headers:
 
-        Link : <http://api.messagecenter.ex/messages?max_id=55>; rel="next", <http:///api.messagecenter.ex/messages?max_id=110>; rel="last"
+        Link : <http://api.messagecenter.ex/messages?max_id=55>; rel="next", <http:///api.messagecenter.ex/messages?max_id=11>; rel="last"
 
     Body:
         {
@@ -219,6 +236,7 @@ Name     | Type      | Description
                     "subject": "What's for dinner?",
                     "body": "I'm so hungry I could eat a horse.",
                     "read": true
+                    "created_at": 1095379200.00
                 },
                 {
                     "id": 62,
@@ -227,7 +245,9 @@ Name     | Type      | Description
                     "parent_id": 5
                     "subject": "What's for dinner?",
                     "body": "Leave my horse alone! Go make a sandwich.",
-                    "read": false
+                    "read": true
+                    "created_at": 1095379300.00
+                    "modified_at": 109538111.00
                 }
             ]
         }

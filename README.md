@@ -52,9 +52,9 @@ Example of paginating through the latest messages, 30 at a time:
 
 We can leverage HTTP features for caching on the client side:
 
-**ETag:** The server would need to provide the [`ETag`](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19) header. The client can make a request with the [`If-None-Match`](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header containing an ETag value. The backend can then respond with a `304 Not Modified` status code if the list of messages has not changed. This allows for the client to ask for updates, and the server will only transfer large amounts of data when necessary.
+**ETag:** The server would need to provide the [`ETag`](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19) header. In the simplist case for a user's messages the Etag could be the count of that user's messages. The client can make a request with the [`If-None-Match`](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header containing an ETag value. The backend can then respond with a `304 Not Modified` status code if the list of messages has not changed. This allows for the client to ask for updates, and the server will only transfer large amounts of data when necessary.
 
-**Last Modified**: The server would include the [`Last-Modified`](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19) header The client can make a request with the [`If-Modified-Since`](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.25) header. The server will respond with `304 Not Modified` if the return value has not changed since the date and time that was provided in the header.
+**Last Modified**: The server would include the [`Last-Modified`](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19) header. The client can make a request with the [`If-Modified-Since`](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.25) header. The server will respond with `304 Not Modified` if the return value has not changed since the date and time that was provided in the header.
 
 ## References
 
