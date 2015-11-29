@@ -21,7 +21,7 @@ List all the authenticated user's read messages
 Name     | Type      | Description
 ---------|-----------|------------
 `max_id` | `integer` | the largest id of the messages returned
-`count`  | `integer` | maximum number of messages to return in the response (max: 100)
+`count`  | `integer` | maximum number of messages to return in the response (default: 25 max: 100)
 
 
 #### Response 200 OK (application/json)
@@ -201,13 +201,13 @@ Name           | Type      | Description
 Name     | Type      | Description
 ---------|-----------|------------
 `max_id` | `integer` | the largest id of the messages returned
-`count`  | `integer` | maximum number of messages to return in the response (max: 100)
+`count`  | `integer` | maximum number of messages to return in the response (default: 25 max: 100)
 
 #### Response 200 OK (application/json)
 
     Headers:
 
-        Link : <http://api.messagecenter.ex/messages?offset=25>; rel="next", <http:///api.messagecenter.ex/messages?offset=110>; rel="last"
+        Link : <http://api.messagecenter.ex/messages?max_id=25>; rel="next", <http:///api.messagecenter.ex/messages?max_id=110>; rel="last"
 
     Body:
         {
