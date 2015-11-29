@@ -28,13 +28,13 @@ Name     | Type      | Description
 
     Headers:
 
-            Link : <http://api.messagecenter.ex/messages?max_id=55&count=10>; rel="next", <http:///api.messagecenter.ex/messages?max_id=876&count=10>; rel="last"
+            Link : <http://api.messagecenter.ex/messages?max_id=54&count=10>; rel="next", <http:///api.messagecenter.ex/messages?max_id=876&count=10>; rel="last"
 
     Body:
 
             [
                 {
-                    "id": 1,
+                    "id": 54,
                     "sender_id": 22,
                     "recipient_id": 92,
                     "subject": "Favorite programming language?",
@@ -42,7 +42,7 @@ Name     | Type      | Description
                     "read": true
                 },
                 {
-                    "id": 5,
+                    "id": 55,
                     "sender_id": 22,
                     "recipient_id": 92
                     "subject": "What's for dinner?",
@@ -50,7 +50,7 @@ Name     | Type      | Description
                     "read": true
                 },
                 {
-                    "id": 6,
+                    "id": 62,
                     "sender_id": 92,
                     "recipient_id": 22,
                     "parent_id": 5
@@ -93,7 +93,7 @@ Name           | Type      | Description
     Body:
 
             {
-                "id": 5,
+                "id": 55,
                 "sender_id": 22,
                 "recipient_id": 92,
                 "subject": "What's for dinner?",
@@ -129,7 +129,7 @@ Name           | Type      | Description
     Body:
 
             {
-                "id": 5,
+                "id": 55,
                 "sender_id": 22,
                 "recipient_id": 92
                 "subject": "What's for dinner?",
@@ -183,7 +183,7 @@ Name           | Type      | Description
 #### Response 201 (application/json)
 
         {
-            "id": 6,
+            "id": 62,
             "sender_id": 92,
             "recipient_id": 22,
             "parent_id": 5
@@ -207,13 +207,13 @@ Name     | Type      | Description
 
     Headers:
 
-        Link : <http://api.messagecenter.ex/messages?max_id=25>; rel="next", <http:///api.messagecenter.ex/messages?max_id=110>; rel="last"
+        Link : <http://api.messagecenter.ex/messages?max_id=55>; rel="next", <http:///api.messagecenter.ex/messages?max_id=110>; rel="last"
 
     Body:
         {
             [
                 {
-                    "id": 5,
+                    "id": 55,
                     "sender_id": 22,
                     "recipient_id": 92
                     "subject": "What's for dinner?",
@@ -221,7 +221,7 @@ Name     | Type      | Description
                     "read": true
                 },
                 {
-                    "id": 6,
+                    "id": 62,
                     "sender_id": 92,
                     "recipient_id": 22,
                     "parent_id": 5
