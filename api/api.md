@@ -20,7 +20,7 @@ List all the authenticated user's read messages
 
 Name     | Type      | Description
 ---------|-----------|------------
-`offset` | `integer` | the count to start at for this request (should be a multiple of count)
+`max_id` | `integer` | the largest id of the messages returned
 `count`  | `integer` | maximum number of messages to return in the response (max: 100)
 
 
@@ -28,7 +28,7 @@ Name     | Type      | Description
 
     Headers:
 
-            Link : <http://api.messagecenter.ex/messages?offset=10>; rel="next", <http:///api.messagecenter.ex/messages?offset=110>; rel="last"
+            Link : <http://api.messagecenter.ex/messages?max_id=55&count=10>; rel="next", <http:///api.messagecenter.ex/messages?max_id=876&count=10>; rel="last"
 
     Body:
 
@@ -200,14 +200,14 @@ Name           | Type      | Description
 
 Name     | Type      | Description
 ---------|-----------|------------
-`offset` | `integer` | the count to start at for this request (should be a multiple of count)
+`max_id` | `integer` | the largest id of the messages returned
 `count`  | `integer` | maximum number of messages to return in the response (max: 100)
 
 #### Response 200 OK (application/json)
 
     Headers:
 
-        Link : <http://api.messagecenter.ex/messages?offset=10>; rel="next", <http:///api.messagecenter.ex/messages?offset=110>; rel="last"
+        Link : <http://api.messagecenter.ex/messages?offset=25>; rel="next", <http:///api.messagecenter.ex/messages?offset=110>; rel="last"
 
     Body:
         {
