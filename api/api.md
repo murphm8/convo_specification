@@ -177,7 +177,7 @@ be able to give their own messages in the case of certain error codes.
 
     PUT /messages/:id/read
 
-#### Response 200 OK
+#### Response 204 NO CONTENT
 
 #### Response 404 NOT FOUND
 
@@ -185,7 +185,7 @@ be able to give their own messages in the case of certain error codes.
 
     PUT /messages/:id/unread
 
-#### Response 200 OK
+#### Response 204 NO CONTENT
 
 #### Response 404 NOT FOUND
 
@@ -206,7 +206,7 @@ be able to give their own messages in the case of certain error codes.
             "body": "Leave my horse alone! Go make a sandwich."
         }
 
-#### Response 201 (application/json)
+#### Response 201 CREATED (application/json)
 
     Headers:
 
