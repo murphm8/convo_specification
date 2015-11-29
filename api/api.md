@@ -16,6 +16,10 @@ List all the authenticated user's read messages newest first:
 
     GET /messages/read
 
+List the authenticated user's sent messages newest first:
+
+    GET /messages/sent
+
 #### Parameters
 
 Name     | Type      | Description
@@ -28,9 +32,9 @@ Name     | Type      | Description
 
     Headers:
 
-            Link : <http://api.messagecenter.ex/messages?max_id=54&count=10>; rel="next", <http:///api.messagecenter.ex/messages?max_id=876&count=10>; rel="last"
+            Link : <http://api.messagecenter.ex/messages?max_id=54&count=3>; rel="next", <http:///api.messagecenter.ex/messages?max_id=876&count=3>; rel="last"
 
-    Body:
+    Body (authenticated user's id = 92):
 
             [
                 {
@@ -60,9 +64,7 @@ Name     | Type      | Description
                     "parent_id": 5
                     "subject": "What's for dinner?",
                     "body": "Leave my horse alone! Go make a sandwich.",
-                    "read": false
                     "created_at": 1095379300.00
-                    "modified_at": 1095379300.00
                 }
             ]
 
@@ -96,7 +98,7 @@ Name           | Type      | Description
 
             Location: /messages/55
 
-    Body:
+    Body (authenticated user's id = 22):
 
             {
                 "id": 55,
@@ -135,7 +137,7 @@ be able to give their own messages in the case of certain error codes.
 
 #### Response 200 OK (application/json)
 
-    Body:
+    Body (authenticated user's id = 92):
 
             {
                 "id": 55,
@@ -197,7 +199,7 @@ be able to give their own messages in the case of certain error codes.
 
         Location: /messages/62
 
-    Body:
+    Body (authenticated user's id = 92):
 
         {
             "id": 62,
@@ -226,7 +228,7 @@ Name     | Type      | Description
 
         Link : <http://api.messagecenter.ex/messages?max_id=55>; rel="next", <http:///api.messagecenter.ex/messages?max_id=11>; rel="last"
 
-    Body:
+    Body (authenticated user's id = 22):
         {
             [
                 {
@@ -235,7 +237,6 @@ Name     | Type      | Description
                     "recipient_id": 92
                     "subject": "What's for dinner?",
                     "body": "I'm so hungry I could eat a horse.",
-                    "read": true
                     "created_at": 1095379200.00
                 },
                 {
