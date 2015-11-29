@@ -4,16 +4,16 @@ Allows users to send, receive, and reply to convos.
 
 ## Convo Object
 
-Field        | Visibility |  Type              | Description
--------------|------------|--------------------|-------------
-id           | both       | int                | unique id of the convo
-sender_id    | both       | int                | id of the sender of the convo
-recipient_id | both       | int                | id of the recipient of the convo
-subject      | both       | string             | subject of the convo
-body         | both       | string             | contents of the convo
-read         | receiver   | bool               | true if the convo has been marked as read
-created_at   | both       | float (epoch time) | time the convo was created at
-modified_at  | receiver   | float (epoch time) | time the convo was last modified
+Field        |  Type              | Description
+-------------|--------------------|-------------
+id           | int                | unique id of the convo
+sender_id    | int                | id of the sender of the convo
+recipient_id | int                | id of the recipient of the convo
+subject      | string             | subject of the convo
+body         | string             | contents of the convo
+read         | bool               | true if the convo has been marked as read
+created_at   | float (epoch time) | time the convo was created at
+modified_at  | float (epoch time) | time the convo was last modified
 
 ## List Convos
 
@@ -56,8 +56,8 @@ Name     | Type      | Description
                     "recipient_id": 92,
                     "subject": "Favorite programming language?",
                     "body": "I really like Fortran.",
-                    "read": true
-                    "created_at": 1095379.00
+                    "read": true,
+                    "created_at": 1095379.00,
                     "modified_at": 1095379.00
                 },
                 {
@@ -66,8 +66,8 @@ Name     | Type      | Description
                     "recipient_id": 92
                     "subject": "What's for dinner?",
                     "body": "I'm so hungry I could eat a horse.",
-                    "read": true
-                    "created_at": 1095379200.00
+                    "read": true,
+                    "created_at": 1095379200.00,
                     "modified_at": 1095379200.00
                 },
                 {
@@ -77,7 +77,9 @@ Name     | Type      | Description
                     "parent_id": 5
                     "subject": "What's for dinner?",
                     "body": "Leave my horse alone! Go make a sandwich.",
-                    "created_at": 1095379300.00
+                    "read": false,
+                    "created_at": 1095379300.00,
+                    "modified_at": 1095379310.00
                 }
             ]
 
@@ -119,7 +121,9 @@ Name           | Type      | Description
                 "recipient_id": 92,
                 "subject": "What's for dinner?",
                 "body": "I'm so hungry I could eat a horse.",
-                "created_at": 1095379200.00
+                "read": false,
+                "created_at": 1095379200.00,
+                "modified_at": 1095379300.00
             }
 
 #### Response 422 UNPROCESSABLE ENTITY (application/json)
@@ -158,8 +162,8 @@ be able to give their own messages in the case of certain error codes.
                 "recipient_id": 92
                 "subject": "What's for dinner?",
                 "body": "I'm so hungry I could eat a horse.",
-                "read": false
-                "created_at": 1095379200.00
+                "read": false,
+                "created_at": 1095379200.00,
                 "modified_at": 1095379200.00
             }
 
@@ -221,7 +225,9 @@ be able to give their own messages in the case of certain error codes.
             "parent_id": 5
             "subject": "What's for dinner?",
             "body": "Leave my horse alone! Go make a sandwich.",
-            "created_at": 1095379300.00
+            "read": false,
+            "created_at": 1095379300.00,
+            "modified_at": 1095379300.00
         }
 
 ## Get all the convos in the reply thread of this convo
@@ -250,7 +256,9 @@ Name     | Type      | Description
                     "recipient_id": 92
                     "subject": "What's for dinner?",
                     "body": "I'm so hungry I could eat a horse.",
+                    "read": true
                     "created_at": 1095379200.00
+                    "modified_at": 1095379300.00
                 },
                 {
                     "id": 62,
