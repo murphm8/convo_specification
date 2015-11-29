@@ -61,6 +61,7 @@ We can leverage HTTP features for caching on the client side:
 I referenced the following when designing my solution:
 
 - [HTTP Protocols](http://www.w3.org/)
+- [GitHub API](https://developer.github.com/v3/)
 - [Etsy API](https://www.etsy.com/developers/documentation)
 - [Twitter API](https://dev.twitter.com/rest/public)
 - [simple private messaging system](http://www.pixel2life.com/publish/tutorials/608/simple_private_messaging_system/)

@@ -4,14 +4,14 @@ Allows users to send, receive, and reply to messages.
 
 ## Message Object
 
-Field        | Visibility |  Type             | Description
--------------|------------|-------------------|-------------
-id           | both       | int               | unique id of the message
-sender_id    | both       | int               | id of the sender of the message
-recipient_id | both       | int               | id of the recipient of the message
-subject      | both       | string            | subject of the message
-body         | both       | string            | contents of the message
-read         | receiver   | bool              | true if the message has been marked as read
+Field        | Visibility |  Type              | Description
+-------------|------------|--------------------|-------------
+id           | both       | int                | unique id of the message
+sender_id    | both       | int                | id of the sender of the message
+recipient_id | both       | int                | id of the recipient of the message
+subject      | both       | string             | subject of the message
+body         | both       | string             | contents of the message
+read         | receiver   | bool               | true if the message has been marked as read
 created_at   | both       | float (epoch time) | time the message was created at
 modified_at  | receiver   | float (epoch time) | time the message was last modified
 
@@ -86,7 +86,7 @@ Name     | Type      | Description
 
   This creates a new message with the authenticated user as the sender.
 
-    POST /gists
+    POST /messages
 
 #### Input
 
