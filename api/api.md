@@ -38,7 +38,7 @@ Name     | Type      | Description
                     "sender_id": 22,
                     "recipient_id": 92,
                     "subject": "Favorite programming language?",
-                    "body": "I really like Fortran."
+                    "body": "I really like Fortran.",
                     "read": true
                 },
                 {
@@ -46,8 +46,8 @@ Name     | Type      | Description
                     "sender_id": 22,
                     "recipient_id": 92
                     "subject": "What's for dinner?",
-                    "body": "I'm so hungry I could eat a horse."
-                    "read": false
+                    "body": "I'm so hungry I could eat a horse.",
+                    "read": true
                 },
                 {
                     "id": 6,
@@ -55,7 +55,8 @@ Name     | Type      | Description
                     "recipient_id": 22,
                     "parent_id": 5
                     "subject": "What's for dinner?",
-                    "body": "Leave my horse alone! Go make a sandwich."
+                    "body": "Leave my horse alone! Go make a sandwich.",
+                    "read": false
                 }
             ]
 
@@ -96,7 +97,8 @@ Name           | Type      | Description
                 "sender_id": 22,
                 "recipient_id": 92,
                 "subject": "What's for dinner?",
-                "body": "I'm so hungry I could eat a horse."
+                "body": "I'm so hungry I could eat a horse.",
+                "read": false
             }
 
 #### Response 422 UNPROCESSABLE ENTITY (application/json)
@@ -131,7 +133,8 @@ Name           | Type      | Description
                 "sender_id": 22,
                 "recipient_id": 92
                 "subject": "What's for dinner?",
-                "body": "I'm so hungry I could eat a horse."
+                "body": "I'm so hungry I could eat a horse.",
+                "read": false
             }
 
 #### Response 404 NOT FOUND
@@ -185,7 +188,8 @@ Name           | Type      | Description
             "recipient_id": 22,
             "parent_id": 5
             "subject": "What's for dinner?",
-            "body": "Leave my horse alone! Go make a sandwich."
+            "body": "Leave my horse alone! Go make a sandwich.",
+            "read": false
         }
 
 ## Get all the messages in the reply thread of this message
@@ -213,7 +217,8 @@ Name     | Type      | Description
                     "sender_id": 22,
                     "recipient_id": 92
                     "subject": "What's for dinner?",
-                    "body": "I'm so hungry I could eat a horse."
+                    "body": "I'm so hungry I could eat a horse.",
+                    "read": true
                 },
                 {
                     "id": 6,
@@ -221,7 +226,8 @@ Name     | Type      | Description
                     "recipient_id": 22,
                     "parent_id": 5
                     "subject": "What's for dinner?",
-                    "body": "Leave my horse alone! Go make a sandwich."
+                    "body": "Leave my horse alone! Go make a sandwich.",
+                    "read": false
                 }
             ]
         }
