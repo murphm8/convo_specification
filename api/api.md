@@ -1,51 +1,51 @@
-# Messaging API V1
+# Convo API V1
 
-Allows users to send, receive, and reply to messages.
+Allows users to send, receive, and reply to convos.
 
-## Message Object
+## Convo Object
 
 Field        | Visibility |  Type              | Description
 -------------|------------|--------------------|-------------
-id           | both       | int                | unique id of the message
-sender_id    | both       | int                | id of the sender of the message
-recipient_id | both       | int                | id of the recipient of the message
-subject      | both       | string             | subject of the message
-body         | both       | string             | contents of the message
-read         | receiver   | bool               | true if the message has been marked as read
-created_at   | both       | float (epoch time) | time the message was created at
-modified_at  | receiver   | float (epoch time) | time the message was last modified
+id           | both       | int                | unique id of the convo
+sender_id    | both       | int                | id of the sender of the convo
+recipient_id | both       | int                | id of the recipient of the convo
+subject      | both       | string             | subject of the convo
+body         | both       | string             | contents of the convo
+read         | receiver   | bool               | true if the convo has been marked as read
+created_at   | both       | float (epoch time) | time the convo was created at
+modified_at  | receiver   | float (epoch time) | time the convo was last modified
 
-## List Messages
+## List Convos
 
-List the authenticated user's messages newest first:
+List the authenticated user's convos newest first:
 
-    GET /messages
+    GET /convos
 
-List all the authenticated user's unread messages newest first:
+List all the authenticated user's unread convos newest first:
 
-    GET /messages/unread
+    GET /convos/unread
 
-List all the authenticated user's read messages newest first:
+List all the authenticated user's read convos newest first:
 
-    GET /messages/read
+    GET /convos/read
 
-List the authenticated user's sent messages newest first:
+List the authenticated user's sent convos newest first:
 
-    GET /messages/sent
+    GET /convos/sent
 
 #### Parameters
 
 Name     | Type      | Description
 ---------|-----------|------------
-`max_id` | `integer` | the largest id of the messages returned
-`count`  | `integer` | maximum number of messages to return in the response (default: 25 max: 100)
+`max_id` | `integer` | the largest id of the convos returned
+`count`  | `integer` | maximum number of convos to return in the response (default: 25 max: 100)
 
 
 #### Response 200 OK (application/json)
 
     Headers:
 
-            Link : <http://api.messagecenter.ex/messages?max_id=54&count=3>; rel="next", <http:///api.messagecenter.ex/messages?max_id=876&count=3>; rel="last"
+            Link : <http://api.exmaple.com/v1/convos?max_id=54&count=3>; rel="next", <http:///api.example.com/v1/convos?max_id=876&count=3>; rel="last"
 
     Body (authenticated user's id = 92):
 
@@ -82,19 +82,19 @@ Name     | Type      | Description
             ]
 
 
-## Create a New Message
+## Create a New Convo
 
-  This creates a new message with the authenticated user as the sender.
+  This creates a new convo with the authenticated user as the sender.
 
-    POST /messages
+    POST /convos
 
 #### Input
 
 Name           | Type      | Description
 ---------------|-----------|------------
-`recipient_id` | `integer` | **Required** the id of the user who should recieve this message
-`subject`      | `string`  | **Required** the subject of the message (max: 140 characters)
-`body`         | `string`  | **Required** the contents of the message (max: 64,000 characters)
+`recipient_id` | `integer` | **Required** the id of the user who should receive this convo
+`subject`      | `string`  | **Required** the subject of the convo (max: 140 characters)
+`body`         | `string`  | **Required** the contents of the convo (max: 64,000 characters)
 
 
 #### Request (application/json)
@@ -109,7 +109,7 @@ Name           | Type      | Description
 
     Headers:
 
-            Location: /messages/55
+            Location: /convos/55
 
     Body (authenticated user's id = 22):
 
@@ -129,24 +129,24 @@ be able to give their own messages in the case of certain error codes.
 
             {
                 "code" : 1024,
-                "message" : "Validation Failed",
+                "convo" : "Validation Failed",
                 "errors" : [
                 {
                   "code" : 5432,
                   "field" : "subject",
-                  "message" : "Subject has a maximum length of 140 characters"
+                  "convo" : "Subject has a maximum length of 140 characters"
                 },
                 {
                    "code" : 5622,
                    "field" : "body",
-                   "message" : "The body cannot contain the word 'Ni'"
+                   "convo" : "The body cannot contain the word 'Ni'"
                 }
               ]
             }
 
-## Get a single message
+## Get a single convo
 
-    GET /messages/:id
+    GET /convos/:id
 
 #### Response 200 OK (application/json)
 
@@ -165,39 +165,39 @@ be able to give their own messages in the case of certain error codes.
 
 #### Response 404 NOT FOUND
 
-## Delete a message
+## Delete a convo
 
-    DELETE /messages/:id
-
-#### Response 204 NO CONTENT
-
-#### Response 404 NOT FOUND
-
-## Mark message as read
-
-    PUT /messages/:id/read
+    DELETE /convos/:id
 
 #### Response 204 NO CONTENT
 
 #### Response 404 NOT FOUND
 
-## Mark message as unread
+## Mark convo as read
 
-    PUT /messages/:id/unread
+    PUT /convos/:id/read
 
 #### Response 204 NO CONTENT
 
 #### Response 404 NOT FOUND
 
-## Reply to a message
+## Mark convo as unread
 
-    POST /messages/:id/reply
+    PUT /convos/:id/unread
+
+#### Response 204 NO CONTENT
+
+#### Response 404 NOT FOUND
+
+## Reply to a convo
+
+    POST /convos/:id/reply
 
 #### Input
 
     Name   | Type     | Description
     -------|----------|------------
-    `body` | `string` | **Required** the contents of the message (max: 64,000 characters)
+    `body` | `string` | **Required** the contents of the convo (max: 64,000 characters)
 
 
 #### Request (application/json)
@@ -210,7 +210,7 @@ be able to give their own messages in the case of certain error codes.
 
     Headers:
 
-        Location: /messages/62
+        Location: /convos/62
 
     Body (authenticated user's id = 92):
 
@@ -224,22 +224,22 @@ be able to give their own messages in the case of certain error codes.
             "created_at": 1095379300.00
         }
 
-## Get all the messages in the reply thread of this message
+## Get all the convos in the reply thread of this convo
 
-    GET /messages/:id/replies
+    GET /convos/:id/replies
 
 #### Parameters
 
 Name     | Type      | Description
 ---------|-----------|------------
-`max_id` | `integer` | the largest id of the messages returned
-`count`  | `integer` | maximum number of messages to return in the response (default: 25 max: 100)
+`max_id` | `integer` | the largest id of the convos returned
+`count`  | `integer` | maximum number of convos to return in the response (default: 25 max: 100)
 
 #### Response 200 OK (application/json)
 
     Headers:
 
-        Link : <http://api.messagecenter.ex/messages?max_id=55>; rel="next", <http:///api.messagecenter.ex/messages?max_id=11>; rel="last"
+        Link : <http://api.example.com/v1/convos?max_id=55>; rel="next", <http:///api.example.com/v1/convos?max_id=11>; rel="last"
 
     Body (authenticated user's id = 22):
         {
