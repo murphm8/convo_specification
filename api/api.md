@@ -1,18 +1,18 @@
-# Messaging API
+# Messaging API V1
 
 Allows users to send, receive, and reply to messages.
 
 ## List Messages
 
-List the authenticated user's messages
+List the authenticated user's messages newest first:
 
     GET /messages
 
-List all the authenticated user's unread messages
+List all the authenticated user's unread messages newest first:
 
     GET /messages/unread
 
-List all the authenticated user's read messages
+List all the authenticated user's read messages newest first:
 
     GET /messages/read
 

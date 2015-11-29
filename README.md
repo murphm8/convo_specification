@@ -25,9 +25,26 @@ There are foreign key constraints on recipient_id (Receipts), sender_id (Message
 
 [Messaging API Doc](/api/api.md)
 
+### Versioning
+
+Each resource in this API is identified by a versioned URL. Example:
+
+  https://messaging.example.com/v1/messages/:id
+
+The prefix v1 is the version specifier. When breaking changes are made to the API this value will change and will be reflected in the version of the API docs.
+
 ### Pagination
 
 In order to paginate through results that might update in real-time we need to use cursor based pagination. In the case of messages, pagination happens from newest to oldest. In order to avoid duplicate pages I provide the `max_id` query parameter. The server will respond with results older than the given ID (inclusive). The `Link` header provides the links for the client to move forwards and backwards along the query. Since `max_id` is inclusive, the client can subtract one from it to get all the results before that ID and not re-include the minimum id from the last query.
+
+Example of paginating through the latest messages, 30 at a time:
+
+  http://messaging.example.com/messages?count=30
+  http://messaging.example.com/messages?count=30&max_id=256
+  http://messaging.example.com/messages?count=30&max_id=200
+  http://messaging.example.com/messages?count=30&max_id=133
+  http://messaging.example.com/messages?count=30&max_id=96
+  http://messaging.example.com/messages?count=30&max_id=33
 
 ### Caching
 
